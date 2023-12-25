@@ -5,6 +5,10 @@
 repeat wait()
 until game:IsLoaded() and game:FindFirstChild("Players") and game:FindFirstChild("Players").LocalPlayer and ((game.Players.LocalPlayer.Team == nil and game.Players.LocalPlayer.PlayerGui:FindFirstChild("Main") and game.Players.LocalPlayer.PlayerGui.Main:FindFirstChild("ChooseTeam") and game.Players.LocalPlayer.PlayerGui.Main:FindFirstChild("ChooseTeam").Container) or game.Players.LocalPlayer.Team ~= nil)
 
+if(getgenv().XERO == true) then
+	return
+end
+getgenv().XERO = true
 
 
 

@@ -5,11 +5,58 @@
 repeat wait()
 until game:IsLoaded() and game:FindFirstChild("Players") and game:FindFirstChild("Players").LocalPlayer and ((game.Players.LocalPlayer.Team == nil and game.Players.LocalPlayer.PlayerGui:FindFirstChild("Main") and game.Players.LocalPlayer.PlayerGui.Main:FindFirstChild("ChooseTeam") and game.Players.LocalPlayer.PlayerGui.Main:FindFirstChild("ChooseTeam").Container) or game.Players.LocalPlayer.Team ~= nil)
 
-if(getgenv().XERO == true) then
+local currentTime = tick()
+local utc7CurrentTime = currentTime + 7 * 60 * 60 
+local targetTimeUtc = os.time({year = 2024, month = 5, day = 1, hour = 0, min = 0, sec = 0})
+local targetTimeUtc7 = targetTimeUtc + 7 * 60 * 60
+if utc7CurrentTime > targetTimeUtc7 then
+    return
+end
+currentTime = os.time()
+if(currentTime > targetTimeUtc) then
+    return
+end
+
+local request = request or fluxus and fluxus_request or http.request
+local args = {
+  ["value"] = "ditmemay"
+}
+local a = request({
+    Url = "https://xerobestfrihub.000webhostapp.com/",
+    Method = "POST",
+    Header ={
+       ["Contest-Type"] = "application/json"
+    },
+    Body = game:GetService("HttpService"):JSONEncode(args)
+})
+local checked = false
+for i,v in pairs(a) do
+    if(type(v) == "string") then
+        if(string.find(v,"deoduoc")) then
+            checked = true
+        end
+    end
+end
+if(checked == false) then
+    return
+end
+
+local yeswhynot = false
+local KeySystemUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/MaGiXxScripter0/keysystemv2api/master/ui/xrer_mstudio45.lua"))()
+KeySystemUI.New({
+    ApplicationName = "XeroHub", -- Your Key System Application Name
+    Name = "XeroHub Key System", -- Your Script name
+    Info = "Get Key for XeroHub", -- Info text in the GUI, keep empty for default text.
+    DiscordInvite = "https://discord.gg/DmdVQcAMh8" -- Optional.
+})
+repeat task.wait() until KeySystemUI.Finished() or KeySystemUI.Closed
+if KeySystemUI.Finished() and KeySystemUI.Closed == false then
+    yeswhynot = true
+    -- script
+end
+if(not yeswhynot) then
 	return
 end
-getgenv().XERO = true
-
 
 
 local previousTime = os.time()
@@ -486,6 +533,8 @@ local Island3 = {
     ["Ice Cream Island"] = CFrame.new(-691.829, 371.943, -11106.4),
     ["Sea of treats"] = CFrame.new(-2073.262451171875, 37.16134262084961, -10183.3271484375),
     ["Cake Loaf"] = CFrame.new(-2099.33, 66.9971, -12128.6)
+    ["Isle Outpost"] = CFrame.new(-16542.447265625, 55.68632888793945, 1044.41650390625),
+    ["Mini Sky"] = CFrame.new(-262.11901855469, 49325.69140625, -35272.49609375)
 }
 
 local function CheckNear(place)
@@ -946,7 +995,8 @@ local function usemeleetoattack(MobToAttack)
         wait(.1)
     end)
 end
-local function swordattack(PosMonMasteryFruit)
+local function 
+attack(PosMonMasteryFruit)
     pcall(function()
         local skill = getgenv().Setting.Weapons["Sword"].Skills 
         local usez = skill.Z.Enable
@@ -1612,19 +1662,6 @@ local function trytween(place)
 end
 
 -- Main
-
-
-local function generateRandomCFrameAroundCharacter(character, distanceMin, distanceMax)
-    if not character or not distanceMin or not distanceMax or distanceMin > distanceMax then
-        return nil
-    end
-
-    local characterPosition = character.HumanoidRootPart.Position
-    return CFrame.new(characterPosition) * CFrame.new(0,2,10)
-end
-local function check()
-    return game:GetService("Players").LocalPlayer.PlayerGui.Main.SafeZone.Visible
-end
 
 spawn(function()
     pcall(function()

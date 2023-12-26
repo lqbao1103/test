@@ -487,8 +487,7 @@ local Island3 = {
     ["Ice Cream Island"] = CFrame.new(-691.829, 371.943, -11106.4),
     ["Sea of treats"] = CFrame.new(-2073.262451171875, 37.16134262084961, -10183.3271484375),
     ["Cake Loaf"] = CFrame.new(-2099.33, 66.9971, -12128.6),
-    ["Isle Outpost"] = CFrame.new(-16542.447265625, 55.68632888793945, 1044.41650390625),
-    ["Mini Sky"] = CFrame.new(-262.11901855469, 49325.69140625, -35272.49609375)
+    ["Isle Outpost"] = CFrame.new(-16542.447265625, 55.68632888793945, 1044.41650390625)
 }
 
 local function CheckNear(place)

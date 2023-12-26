@@ -1449,6 +1449,7 @@ spawn(function()
                                     }
                                     game:GetService("ReplicatedStorage"):FindFirstChild("DefaultChatSystemChatEvents").SayMessageRequest:FireServer(unpack(xero))
                                     child:Destroy()
+                                    wait(1)
                                --end
                             end
                         end
@@ -1460,19 +1461,22 @@ spawn(function()
                                 table.insert(havedkillbefore, publictarget.Name)
                                 sendwebhook(0 , publictarget.Name,2)
                                 child:Destroy()
+                                wait(1)
                             end
                         end
-                        if(string.find(voanhlanhat,"Lost")) then
+                        elseif(string.find(voanhlanhat,"Lost")) then
                             local earnedbt = tonumber(string.match(voanhlanhat,'(%d+) Bounty'))
                             table.insert(havedkillbefore, publictarget.Name)
                             totalearn = totalearn - earnedbt
                             sendwebhook(earnedbt,publictarget.Name,3)
                             child:Destroy()
+                            wait(1)
                         end
-                        if(string.find(voanhlanhat, "No reward")) then
+                        elseif(string.find(voanhlanhat, "No reward")) then
                             table.insert(havedkillbefore, publictarget.Name)
                             sendwebhook(0,publictarget.Name,4)
                             child:Destroy()
+                            wait(1)
                         end
                     end
                 end

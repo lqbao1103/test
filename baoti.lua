@@ -1462,7 +1462,6 @@ spawn(function()
                                 child:Destroy()
                                 wait(1)
                             end
-                        end
                         elseif(string.find(voanhlanhat,"Lost")) then
                             local earnedbt = tonumber(string.match(voanhlanhat,'(%d+) Bounty'))
                             table.insert(havedkillbefore, publictarget.Name)
@@ -1470,7 +1469,6 @@ spawn(function()
                             sendwebhook(earnedbt,publictarget.Name,3)
                             child:Destroy()
                             wait(1)
-                        end
                         elseif(string.find(voanhlanhat, "No reward")) then
                             table.insert(havedkillbefore, publictarget.Name)
                             sendwebhook(0,publictarget.Name,4)

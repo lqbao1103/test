@@ -1,5 +1,3 @@
--- Config
-
 
 -- Load Game
 repeat wait()

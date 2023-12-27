@@ -1686,14 +1686,8 @@ spawn(function()
         while wait() do
             if(Auto_Bounty) then
                 for amount , target in pairs(game.Players:GetChildren()) do
-                    if(target ~= game.Players.LocalPlayer and not table.find(havedkillbefore , target.Name)) then
-                        if(target.Team == "Marines" and game.Players.LocalPlayer.Team == "Marines") then
-                            continue
-                        end
+                    if(target ~= game.Players.LocalPlayer and not table.find(havedkillbefore , target.Name) and not (target.Team == "Marines" and game.Players.LocalPlayer.Team == "Marines") and (target and target.Character)) then
                         local demsolan = 1
-                        if(not target or not target.Character) then
-                            continue
-                        end
                         local postarget = target.Character:FindFirstChild("HumanoidRootPart")
                         local bruh = CheckNear(postarget)
                         if(game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position - bruh.Position).Magnitude > 3000 then
@@ -1749,14 +1743,14 @@ spawn(function()
                                     postarget = target.Character:FindFirstChild("HumanoidRootPart")
                                     local newbruh = CheckNear(postarget)
                                     if(newbruh ~= bruh) then
-                                        continue
+                                        break
                                     end
                                 end
                                 AddVelocity()
                                 Buso()
                                 if(target.Character:FindFirstChild("HumanoidRootPart").Position - game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position).Magnitude >= 10000 then
                                     table.insert(havedkillbefore,target.Name)
-                                    continue
+                                    break
                                 end
                                 trytween(target.Character:FindFirstChild("HumanoidRootPart").CFrame)
                                 if(not target) then
@@ -1764,7 +1758,7 @@ spawn(function()
                                 end
                                 if(target.Character:FindFirstChild("HumanoidRootPart").Position - game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position).Magnitude >= 10000 then
                                     table.insert(havedkillbefore,target.Name)
-                                    continue
+                                    break
                                 end
                                 spawn(function()
                                     while wait() do

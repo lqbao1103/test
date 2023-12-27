@@ -1,3 +1,4 @@
+-- Config
 
 
 -- Load Game
@@ -69,6 +70,98 @@ local currentTime = tick()
 
 getgenv().Delay_Time = 300 -- time to change server
 
+getgenv().Setting = {
+    ["Team"] = "Pirates", --Marines
+    ["Webhook"] = {
+        ["Url"] = "https://discord.com/api/webhooks/1160607946313568417/66MIAVj7-POIFvHLDPu4zpisGyJUl8fcR0jTJl2T0yteZASXG8V9OcFvmPfRZj7Uk6_Y", -- link webhook
+        ["Enabled"] = true, -- enable webhook
+    },
+    ["BypassTP"] = {
+        ["Enable"] = true, -- bypass tp 
+        ["Attempt"] = 0, -- Tween If Failed After x Attempts (change to 0 for inf bypass tp even it fail)
+    },
+    ["FpsLock"] = {
+        ["Enable"] = true, -- lock fps
+        ["Cap"] = 30, -- fps to lock
+    },
+    ["LockBounty"] = {
+        ["Enable"] = true, -- lock bounty
+        ["Cap"] = 30000000, -- reach to this bounty do the action below
+        ["Action"] = "Kick", -- Kick, Shutdown
+        ["SendMessage"] = true, -- send message to webhook when reach the cap
+        ["Message"] = "Congratulation You Have Reached The Bounty Cap MyBounty" -- It Will Replace MyBounty With Your Current Bounty, Add Ping Everyone If You Want
+    },
+    ["Click"] = {
+        ["Enable"] = true, -- click 
+        ["FastClick"] = true -- fast click
+    },
+    ["Haki Ken"] = {
+        ["Enable"] = true, -- Ken Haki 
+    },
+    ["SpamSkill"] = true, -- Will use all skills as fast as possbile ignore holding skills
+    ["Weapons"] = { -- Select Weapon, Self Explain
+        ["Melee"] = {
+            ["Enable"] = true, -- enable using melee
+            ["Delay"] = 0,   -- time delay between the melee skill 
+            ["Skills"] = {
+                ["Z"] = {
+                    ["Enable"] = true, -- enable using skill Z
+                    ["HoldTime"] = 1,  -- hold skill in (seconds)
+                },
+                ["X"] = {
+                    ["Enable"] = true, -- enable using skill X 
+                    ["HoldTime"] = 1,  -- hold skill in (seconds)
+                },
+
+                ["C"] = {
+                    ["Enable"] = true, -- enable using skill C
+                    ["HoldTime"] = 1,  -- hold skill in (seconds)
+                },
+            },
+        },
+        ["Blox Fruit"] = {
+            ["Enable"] = true, -- enable using blox fruit
+            ["Delay"] = 0,  -- time delay between the blox fruit skill 
+            ["Skills"] = {
+                ["Z"] = {
+                    ["Enable"] = true, -- enable using skill Z
+                    ["HoldTime"] = 0, -- hold skill in (seconds)
+                },
+                ["X"] = {
+                    ["Enable"] = true, -- enable using skill X
+                    ["HoldTime"] = 0, -- hold skill in (seconds)
+                },
+
+                ["C"] = {
+                    ["Enable"] = true, -- enable using skill C
+                    ["HoldTime"] = 1, -- hold skill in (seconds)
+                },
+                ["V"] = {
+                    ["Enable"] = true, -- enable using skill V
+                    ["HoldTime"] = 3, -- hold skill in (seconds)
+                },
+                ["F"] = {
+                    ["Enable"] = false, -- enable using skill F
+                    ["HoldTime"] = 0, -- hold skill in (seconds)
+                },
+            },
+        },
+        ["Sword"] = {
+            ["Enable"] = false, -- enable using sword
+            ["Delay"] = 0, -- time delay between the sword skill 
+            ["Skills"] = {
+                ["Z"] = {
+                    ["Enable"] = true, -- enable using skill Z
+                    ["HoldTime"] = 1, -- hold skill in (seconds)
+                },
+                ["X"] = {
+                    ["Enable"] = true, -- enable using skill X
+                    ["HoldTime"] = 0, -- hold skill in (seconds)
+                },
+            },
+        },
+    }
+}
 local Auto_Bounty = true
 local Tween = nil
 havedkillbefore = {}
@@ -1587,24 +1680,19 @@ end
 local function check()
     return game:GetService("Players").LocalPlayer.PlayerGui.Main.SafeZone.Visible
 end
-pcall(function() 
-    for amount , target in pairs(game.Players:GetChildren()) do
-        if(target ~= game.Players.LocalPlayer and not table.find(havedkillbefore , target.Name)) then
-            if(target.Team == "Marines" and game.Players.LocalPlayer.Team == "Marines") then
-                table.insert(havedkillbefore,target.Name)
-            end
-        end
-    end
-end)
+
 spawn(function()
     pcall(function()
         while wait() do
             if(Auto_Bounty) then
                 for amount , target in pairs(game.Players:GetChildren()) do
                     if(target ~= game.Players.LocalPlayer and not table.find(havedkillbefore , target.Name)) then
+                        if(target.Team == "Marines" and game.Players.LocalPlayer.Team == "Marines") then
+                            continue
+                        end
                         local demsolan = 1
-                        if(not target or not target.Character) then 
-                            goto cons
+                        if(not target or not target.Character) then
+                            continue
                         end
                         local postarget = target.Character:FindFirstChild("HumanoidRootPart")
                         local bruh = CheckNear(postarget)
@@ -1661,14 +1749,14 @@ spawn(function()
                                     postarget = target.Character:FindFirstChild("HumanoidRootPart")
                                     local newbruh = CheckNear(postarget)
                                     if(newbruh ~= bruh) then
-                                        goto continues
+                                        continue
                                     end
                                 end
                                 AddVelocity()
                                 Buso()
                                 if(target.Character:FindFirstChild("HumanoidRootPart").Position - game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position).Magnitude >= 10000 then
                                     table.insert(havedkillbefore,target.Name)
-                                    goto continues
+                                    continue
                                 end
                                 trytween(target.Character:FindFirstChild("HumanoidRootPart").CFrame)
                                 if(not target) then
@@ -1676,7 +1764,7 @@ spawn(function()
                                 end
                                 if(target.Character:FindFirstChild("HumanoidRootPart").Position - game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").Position).Magnitude >= 10000 then
                                     table.insert(havedkillbefore,target.Name)
-                                    goto continues
+                                    continue
                                 end
                                 spawn(function()
                                     while wait() do
@@ -1969,12 +2057,10 @@ spawn(function()
                                 if(table.find(havedkillbefore,target.Name)) then
                                     publictarget = nil
                                 end
-                                ::continues::
                             until not Auto_Bounty or not target or table.find(havedkillbefore,tostring(target.Name)) or not game.Players:FindFirstChild(target.Name) 
                         end)
                         publictarget = nil
                     end
-                    ::cons::
                 end
                 TryHop = true
                 Auto_Bounty = false

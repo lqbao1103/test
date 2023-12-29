@@ -1,7 +1,7 @@
 getgenv().Setting = {
     ["Team"] = "Pirates", --[[Marines]]
     ["Webhook"] = {
-        ["Url"] = "", --[[ link webhook]]
+        ["Url"] = "https://discord.com/api/webhooks/1160607946313568417/66MIAVj7-POIFvHLDPu4zpisGyJUl8fcR0jTJl2T0yteZASXG8V9OcFvmPfRZj7Uk6_Y", --[[ link webhook]]
         ["Enabled"] = true, --[[ enable webhook]]
     },
     ["BypassTP"] = {

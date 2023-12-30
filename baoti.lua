@@ -28,45 +28,6 @@ if(currentTime > targetTimeUtc) then
     return
 end
 
-local request = request or fluxus and fluxus_request or http.request
-local args = {
-  ["value"] = "ditmemay"
-}
-local a = request({
-    Url = "https://xerobestfrihub.000webhostapp.com/",
-    Method = "POST",
-    Header ={
-       ["Contest-Type"] = "application/json"
-    },
-    Body = game:GetService("HttpService"):JSONEncode(args)
-})
-local checked = false
-for i,v in pairs(a) do
-    if(type(v) == "string") then
-        if(string.find(v,"deoduoc")) then
-            checked = true
-        end
-    end
-end
-if(checked == false) then
-    return
-end
-
-local yeswhynot = false
-local KeySystemUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/MaGiXxScripter0/keysystemv2api/master/ui/xrer_mstudio45.lua"))()
-KeySystemUI.New({
-    ApplicationName = "XeroHub",
-    Name = "XeroHub Key System",
-    Info = "Get Key for XeroHub",
-    DiscordInvite = "https://discord.gg/DmdVQcAMh8" 
-})
-repeat task.wait() until KeySystemUI.Finished() or KeySystemUI.Closed
-if KeySystemUI.Finished() and KeySystemUI.Closed == false then
-    yeswhynot = true
-end
-if(not yeswhynot) then
-	return
-end
 
 getgenv().Setting = {
     ["Team"] = "Pirates", --Marines

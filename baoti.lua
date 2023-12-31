@@ -10,7 +10,6 @@ _G.Settings = {
 }
 script_key = "xxxxxxxxxxxxxxxxxxxxxxxx"
 ]]
-if script_key == "lonmamaytoafffffffffff" then
 print"bro got secret WL"
 require(game.ReplicatedStorage:WaitForChild("Notification")).new(" <Color=Yellow> tf how u can got secret Wl <Color=/> "):Display()
 _G.Settings={Main={["Auto Farm"]=true,["Auto Go To Fruit"]=true,["Store Fruit"]=true,["Auto Saber"]=false,["Auto Pole"]=true,["Auto New World"]=true,["Auto Bartilo Quest"]=true,["Auto Rengoku"]=true,["Open Flamingo Access"]=true,["Midnight Blade"]=true,["AutoNewWorld3"]=true}}if _G.Config then if _G.Settings.Main["Auto Farm"]then _G.StartFarm=true end;if _G.Settings.Main["Auto Saber"]then _G.Start_Saber=true end;if _G.Settings.Main["Auto Pole"]then _G.Start_Pole=true end;if _G.Settings.Main["Auto New World"]then _G.Auto_New_World=true end;if _G.Settings.Main["Auto Bartilo Quest"]then _G.Auto_Bartilo_Quest=true end;if _G.Settings.Main["Auto Rengoku"]then _G.AutoRengoku=true end;if _G.Settings.Main["Auto Go To Fruit"]then _G.Grab_Fruit=true end;if _G.Settings.Main["Store Fruit"]then _G.StoreFruit=true end;if _G.Settings.Main["Open Flamingo Access"]then _G.Open_Flamingo_Access=true end;if _G.Settings.Main["Midnight Blade"]then _G.Midnight_Blade=true end if _G.Settings.Main["AutoNewWorld3"] then _G.Auto_World_3 = true end end;if _G.Config==false then _G.Start_Saber=value;_G.StartFarm=value;_G.Start_Pole=value;_G.Auto_New_World=value;_G.Auto_Bartilo_Quest=value;_G.AutoRengoku=value;_G.Grab_Fruit=value;_G.StoreFruit=value;_G.AutoFarmBossAll=value end
@@ -2244,6 +2243,3 @@ spawn(function()
         end
 	end
 end)
-else
-    game.Players.LocalPlayer:Kick("Not WL [ pls get key again by use /dropkey from bot  @lolmemaytoafffffffffff#0101 to get ur key ]") 
-end
